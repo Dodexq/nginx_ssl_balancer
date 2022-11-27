@@ -1,0 +1,10 @@
+[test]
+host01 ansible_host=192.168.56.71 inv_user=client1
+[group1]
+host02 ansible_host=192.168.56.72 inv_user=client2
+[group2]
+host03 ansible_host=192.168.56.73 inv_user=client3
+
+[all_group:children]
+group1
+group2
