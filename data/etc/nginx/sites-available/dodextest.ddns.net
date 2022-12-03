@@ -1,12 +1,31 @@
 server {
-       listen 8090;
-       listen [::]:8090;
        server_name dodextest.ddns.net www.dodextest.ddns.net;
 
-       root /var/www/tutorial;
+       root /var/www/dodextest.ddns.net/html;
        index index.html;
 
        location / {
                try_files $uri $uri/ =404;
        }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/dodextest.ddns.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/dodextest.ddns.net/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = dodextest.ddns.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+       listen 80;
+       listen [::]:80;
+       server_name dodextest.ddns.net www.dodextest.ddns.net;
+    return 404; # managed by Certbot
+
+
 }
