@@ -22,8 +22,8 @@ server {
     } # managed by Certbot
 
 
-       listen 80;
-       listen [::]:80;
+       listen 8080;
+       listen [::]:8080;
        server_name dodextest.ddns.net www.dodextest.ddns.net;
     return 404; # managed by Certbot
 

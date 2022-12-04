@@ -3,6 +3,8 @@ rm /vagrant/data/host03.pub
 sudo apt install certbot python3-certbot-nginx -
 sudo cp /vagrant/data/etc/nginx/sites-available/dodextest.ddns.net /etc/nginx/sites-available/
 sudo ln -s /etc/nginx/sites-available/dodextest.ddns.net /etc/nginx/sites-enabled/dodextest.ddns.net
-sudo cp -rf /vagrant/data/etc/letsencrypt/* /etc/letsencrypt/
+
+
 ##nginx certbot
-#certbot --nginx -d dodextest.ddns.net --email dodexpwnz@gmail.com --http-01-port=81
+#certbot --nginx -d dodextest.ddns.net --email dodexpwnz@gmail.com
+#sudo cp -rf /vagrant/data/etc/letsencrypt/* /etc/letsencrypt/
