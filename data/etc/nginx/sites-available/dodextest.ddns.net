@@ -1,11 +1,17 @@
+upstream backend {
+  server 192.168.56.71; #host01
+  server 192.168.56.72; #host02
+}
+
 server {
        server_name dodextest.ddns.net www.dodextest.ddns.net;
 
-       root /var/www/dodextest.ddns.net/html;
-       index index.html;
-
        location / {
-               try_files $uri $uri/ =404;
+               proxy_redirect       off;
+               proxy_set_header     X-Real-IP $remote_addr;
+               proxy_set_header     X-Forwarded-For $proxy_add_x_forwarded_for;
+               proxy_set_header     Host $http_host;
+               proxy_pass           http://backend;
        }
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot

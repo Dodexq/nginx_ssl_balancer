@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
 		  vb.name = "host01"
 		  vb.cpus = "2"
 	  end
+  host01.vm.provision "shell", path: "data/host01.sh"
   end
 
   config.vm.define "host02" do |host02|

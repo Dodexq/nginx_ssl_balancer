@@ -1,3 +1,4 @@
 .vagrant/
 data/dodextest.ddns.net/
 data/etc/letsencrypt/
+ansible.log
