@@ -8,7 +8,9 @@ Vagrant.configure("2") do |config|
   config.vm.define "ansible-server" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
     server.vm.hostname = "ansibleserver"
-    server.vm.network :public_network, ip: "192.168.0.200"
+    server.vm.network :private_network, ip: "192.168.56.70"
+    server.vm.network "forwarded_port", guest: 80, host: 8080
+    server.vm.network "forwarded_port", guest: 443, host: 8043
     server.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
       vb.name = "ansible-server"
@@ -43,9 +45,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "host03" do |host03|
     host03.vm.box = "geerlingguy/ubuntu2004"
     host03.vm.hostname = "nginxtest"
-    host03.vm.network "forwarded_port", guest: 80, host: 8080
-    host03.vm.network "forwarded_port", guest: 443, host: 8043
-    host03.vm.network "private_network", ip: "192.168.56.73"
+    host03.vm.network :private_network, ip: "192.168.56.73"
     host03.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
 	    vb.cpus = "2"
