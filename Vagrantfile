@@ -4,7 +4,6 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.vm.boot_timeout = 900
 
-
   config.vm.define "ansible-server" do |server|
     server.vm.box = "geerlingguy/ubuntu2004"
     server.vm.hostname = "ansibleserver"
@@ -50,7 +49,7 @@ Vagrant.configure("2") do |config|
     host03.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
       vb.cpus = "2"
-      vb.name = "nginxtest"
+      vb.name = "host03"
     end
   host03.vm.provision "shell", path: "data/provision/host03.sh"
   end
