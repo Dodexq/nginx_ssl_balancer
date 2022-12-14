@@ -1,9 +1,9 @@
 [main]
-main ansible_hosts=192.168.56.70
+gate ansible_host=192.168.56.70
 [hosts]
-host01 ansible_host=192.168.56.71 inv_user=client1
-host02 ansible_host=192.168.56.72 inv_user=client2
-host03 ansible_host=192.168.56.73 inv_user=client3
+host01 ansible_host=192.168.56.71
+host02 ansible_host=192.168.56.72
+host03 ansible_host=192.168.56.73
 
 [all_group:children]
 main
