@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "host03" do |host03|
     host03.vm.box = "geerlingguy/ubuntu2004"
-    host03.vm.hostname = "nginxtest"
+    host03.vm.hostname = "host03"
     host03.vm.network :private_network, ip: "192.168.56.73"
     host03.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
