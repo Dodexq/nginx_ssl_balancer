@@ -1,2 +1,5 @@
 ---
-# handlers file for certbot-init
+- name: nginx reload
+  service:
+    name: nginx
+    state: reloaded

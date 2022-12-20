@@ -32,13 +32,4 @@
     file:
       path: /etc/nginx/sites-enabled/default
       state: absent
-
-- name: Reload nginx 
-  tags:
-    - nginx
-  block:
-  - name: Reload nginx
-    service: 
-      name: nginx
-      state: reloaded
-
+    notify: nginx
