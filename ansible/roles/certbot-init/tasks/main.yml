@@ -1,2 +1,44 @@
 ---
-# tasks file for certbot-init
+- name: Check and install certificate.
+  tags: 
+    - install
+  block:
+  - name: Check if certificate already exists.
+    stat:
+      path: /etc/letsencrypt/live/{{ cert_domain }}/cert.pem
+    register: letsencrypt_cert
+
+  - name: Certbot create Cert
+    command: "{{ cert_create_command }}"
+    when: not letsencrypt_cert.stat.exists
+
+- name: Copy and deploy balancer config
+  tags:
+    - configure
+  block:
+  - name: Copy sites-available config
+    copy:
+      src: files/nginx/sites-available/{{ cert_domain }}
+      dest: /etc/nginx/site-available/
+      owner: root
+      group: root
+      mode: '0644'
+  - name: Creating a symlink
+    file:
+      src: /etc/nginx/sites-available/{{ cert_domain }}
+      dest: /etc/nginx/sites-enabled/{{ cert_domain }}
+      state: link
+  - name: Remove default config
+    file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
+
+- name: Reload nginx 
+  tags:
+    - nginx
+  block:
+  - name: Reload nginx
+    service: 
+      name: nginx
+      state: reloaded
+
