@@ -19,7 +19,7 @@
   - name: Copy sites-available config
     copy:
       src: files/nginx/sites-available/{{ cert_domain }}
-      dest: /etc/nginx/site-available/
+      dest: /etc/nginx/sites-available/
       owner: root
       group: root
       mode: '0644'
