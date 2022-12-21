@@ -1,5 +1,5 @@
 - name: Certbot-init
-  hosts: main
+  hosts: hosts
   become: yes
   roles: 
     - certbot-init
