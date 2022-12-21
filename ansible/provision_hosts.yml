@@ -2,4 +2,4 @@
   hosts: hosts
   become: yes
   roles: 
-    - certbot-init
+    - hosts-init

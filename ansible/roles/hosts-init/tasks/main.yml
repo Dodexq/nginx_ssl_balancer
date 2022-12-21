@@ -1,0 +1,15 @@
+---
+- name: Deploy html page by Template
+  tags:
+    - template
+  block:
+    - name: Push html page /var/www by Template
+      template:
+        src: templates/index.nginx-debian.j2
+        dest: /var/www/tmlp/index.nginx-debian.html
+    - name: Nginx reload
+      service:
+        name: nginx
+        state: reloaded
+
+
